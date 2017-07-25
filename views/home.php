@@ -9,6 +9,9 @@ require('layout/header.php'); ?>
     {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
+    
+    #busflag 
+    
     //sanitizing $_POST to $post 
     $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
     
@@ -34,16 +37,30 @@ require('layout/header.php'); ?>
                     <h1 class="title-board"><strong><?php echo $row['busname'] ?></strong></h1>
                     <div class="plank">
                         <p class="departure-time">
-                            <?php 
-                                $busdeparttime =  $row['time'];
-                                $busdeparttime = (int)$busdeparttime + 12;
-                                $time = date("h");
-                                $timeremaining =  ((int)$time + 12) - $busdeparttime;
-                                echo $timeremaining. ' hours remaining';
+                            <?php
+                             date_default_timezone_set("Asia/Karachi");
+                             $busdeparttime = date("H", strtotime($row['time'])); 
+                             //echo $busdeparttime.'</br>';
+                             $currenttime = date('H');
+                             //echo $currenttime;
+                             if((int)$busdeparttime > (int)$currenttime){
+                                 echo 'Bus is not avaliable';
+                                 $busflag = false;
+                             } elseif((int)$busdeparttime < (int)$currenttime){
+                                 $timeremaining = (int)$currenttime - (int)$busdeparttime;
+                                 echo $timeremaining.' hours remaining';
+                                 $busflag = true;
+                             } else {
+                                 echo 'Bus is about to set of for '.$row['destination'];
+                             }
                             ?>
                         </p>
                         <p class="seats-avaliable"><?php echo $row['seats'] ?> Seats are remaining</p>
-                        <button type="button" class="btn btn-custom-primary btn-flat">Get a Seat</button>
+                        <?php if($busflag){ ?>
+                            <button type="button" class="btn btn-custom-primary btn-flat">Get a Seat</button>
+                        <?php }else{ ?>
+                            <button type="button" class="btn btn-custom-primary btn-flat" disabled>Get a Seat</button>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
