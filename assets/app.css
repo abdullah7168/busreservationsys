@@ -1,0 +1,30 @@
+body,html{
+    margin: 0;
+    padding: 0;
+    background: #eeeded;
+}
+.bus-board{
+    position: relative;
+    height: 400px;
+    background: #FF4136;
+    background-size: cover;
+    background-position: center center;
+    border-radius: 5px;
+    box-shadow: 5px 15px 27px rgba(0,0,0,0.3);
+}
+.title-board{
+    padding: 40px;
+    margin: 0;
+    color:#fff;
+    font-weight: 900;
+}
+.plank{
+    background: #d9d9d9;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 40px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
