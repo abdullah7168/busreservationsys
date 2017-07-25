@@ -14,21 +14,21 @@
     <header class="header">
         <div class="container">
             <div class="menu menut-top">
-            <form class="form-horizontal">
+            <form class="form-horizontal" method="post" action="<?php $_SERVER['PHP_SELF']; ?>">
                 <div class="col-sm-6">
                     <div class="form-group">
                         <label for="destination">Where you want to go?</label>
                         <select name="destination" class="form-control form-custom-control">
-                            <option value="islamabad">Islamabad</option>
-                            <option value="lahore">Lahore</option>
+                            <option value="Islamabad">Islamabad</option>
+                            <option value="Lahore">Lahore</option>
                             <option value="Rawalpindi">Rawalpindi</option>
                             <option value="Gujrat">Gujrat</option>
-                            <option value="dikhan">DI Khan</option>
+                            <option value="Dikhan">DI Khan</option>
                         </select>
                     </div>
                 </div>
                 <div class="col-sm-6" style="padding-top:23px;">
-                    <button type="submit" class="btn btn-custom-primary btn-flat">Get a Bus</button>
+                    <input type="submit" name="submit" class="btn btn-custom-primary btn-flat" value="Get a bus"/>
                 </div>
             </form>
             </div>

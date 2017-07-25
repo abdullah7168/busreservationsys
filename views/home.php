@@ -9,11 +9,22 @@ require('layout/header.php'); ?>
     {
         echo "Failed to connect to MySQL: " . mysqli_connect_error();
     }
-    $queryreturn = $connection->query('SELECT * FROM buses');
+    //sanitizing $_POST to $post 
+    $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+    
+    if(!$post['submit']){
+        $queryreturn = $connection->query('SELECT * FROM buses');
+    } else{
+        $cityfilter =  $post['destination'];
+        $queryreturn = $connection->query("SELECT * FROM buses WHERE destination='".$cityfilter."'");
+    }
+    //$queryreturn = $connection->query('SELECT * FROM buses');
+    
     if ($queryreturn->num_rows > 0) {
         // output data of each row
      
- ?>
+?>
+
 <!-- Content Goes Here -->
     <div class="container">
         <div class="row">
@@ -22,13 +33,14 @@ require('layout/header.php'); ?>
                 <div class="bus-board">
                     <h1 class="title-board"><strong><?php echo $row['busname'] ?></strong></h1>
                     <div class="plank">
-                        <p class="departure-time"><?php 
-                                                        $busdeparttime =  $row['time'];
-                                                        $time = date("h");
-                                                        $timeremaining = (int)$busdeparttime - (int)$time;
-                                                        echo $timeremaining. ' hours remaining';
-                                                        
-                                                    ?>
+                        <p class="departure-time">
+                            <?php 
+                                $busdeparttime =  $row['time'];
+                                $busdeparttime = (int)$busdeparttime + 12;
+                                $time = date("h");
+                                $timeremaining =  ((int)$time + 12) - $busdeparttime;
+                                echo $timeremaining. ' hours remaining';
+                            ?>
                         </p>
                         <p class="seats-avaliable"><?php echo $row['seats'] ?> Seats are remaining</p>
                         <button type="button" class="btn btn-custom-primary btn-flat">Get a Seat</button>
@@ -37,8 +49,11 @@ require('layout/header.php'); ?>
             </div>
             <?php  }
                 } else {
-                    echo "0 results";
-                } ?>
+            ?>
+            <div class="col-sm-6 col-sm-offset-2">
+                <p class="alert alert-info">There are no buses for <?php echo $cityfilter; ?> yet, Try again later</p>
+            </div>
+            <?php } ?>
         </div>
         
     </div>
