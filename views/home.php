@@ -55,9 +55,14 @@ require('layout/header.php'); ?>
                              }
                             ?>
                         </p>
+                        <p class="seats-avaliable"> to <?php echo $row['destination'] ?></p>
                         <p class="seats-avaliable"><?php echo $row['seats'] ?> Seats are remaining</p>
                         <?php if($busflag){ ?>
-                            <button type="button" class="btn btn-custom-primary btn-flat">Get a Seat</button>
+                            <form action="gettingbus.php" method="POST">
+                                <input type="text" name="bus-id" hidden value="<?php echo $row['id'] ?>">
+                                <input type="text" name="seats" hidden value="<?php echo $row['seats'] ?>">
+                                <button type="submit" name="submit" class="btn btn-custom-primary btn-flat">Get a Seat</button>
+                            </form>
                         <?php }else{ ?>
                             <button type="button" class="btn btn-custom-primary btn-flat" disabled>Get a Seat</button>
                         <?php } ?>
@@ -70,7 +75,8 @@ require('layout/header.php'); ?>
             <div class="col-sm-6 col-sm-offset-2">
                 <p class="alert alert-info">There are no buses for <?php echo $cityfilter; ?> yet, Try again later</p>
             </div>
-            <?php } ?>
+            <?php 
+            } ?>
         </div>
         
     </div>

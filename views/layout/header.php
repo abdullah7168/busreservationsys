@@ -8,7 +8,7 @@
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,700i,800|Raleway:100,200,300,300i,400,400i,500,500i,600,700,700i,800,900" rel="stylesheet">
-        <link href="assets/app.css" rel="stylesheet">
+        <link href="assets/app.css?v=1.0.0" rel="stylesheet">
     </head>
     <body>
     <header class="header">
