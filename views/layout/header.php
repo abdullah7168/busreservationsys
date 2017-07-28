@@ -8,9 +8,10 @@
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,700i,800|Raleway:100,200,300,300i,400,400i,500,500i,600,700,700i,800,900" rel="stylesheet">
-        <link href="assets/app.css?v=1.0.0" rel="stylesheet">
+        <link href="assets/app.css?v=1.0.1" rel="stylesheet">
     </head>
     <body>
+    <?php if($does_have_select): ?>
     <header class="header">
         <div class="container">
             <div class="menu menut-top">
@@ -35,3 +36,12 @@
         </div>
     </header>
     <div class="clearfix"></div>
+    <?php else: ?>
+        <div class="container">
+            <div class="col-sm-6">
+                <h1 class="heading" style="padding-top:40px;padding-bottom:40px;">
+                    Bus Booking Form.
+                </h1>
+            </div>
+        </div>
+    <?php endif; ?>

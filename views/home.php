@@ -1,7 +1,22 @@
 <?php
+$does_have_select = true;
 #main content page.
 require('layout/header.php'); ?>
+<div class="wrapper">
+    <div class="wrapper--overlay">
+        <div class="flex">
+            <div class="content">
+                <img src="assets/images/Bus-icon.png" style="width:150px;" alt="">
+                <h3>Get a <strong>BUS</strong> from our Online Bus Portal.</h3>
+                <svg height="4px" width="100px">
+                    <line x1="0" y1="0" x2="100" y2="0" style="color:#fff;stroke:#fff;stroke-width:4px;" ></line>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
 <?php 
+
 #database quries goes here
  $connection = mysqli_connect(DB_HOST,DB_USER,DB_PASS,DB_NAME);
     // Check connection
@@ -43,15 +58,16 @@ require('layout/header.php'); ?>
                              //echo $busdeparttime.'</br>';
                              $currenttime = date('H');
                              //echo $currenttime;
-                             if((int)$busdeparttime > (int)$currenttime){
+                             if((int)$busdeparttime < (int)$currenttime){
                                  echo 'Bus is not avaliable';
                                  $busflag = false;
-                             } elseif((int)$busdeparttime < (int)$currenttime){
-                                 $timeremaining = (int)$currenttime - (int)$busdeparttime;
+                             } elseif((int)$busdeparttime > (int)$currenttime){
+                                 $timeremaining = (int)$busdeparttime - (int)$currenttime;
                                  echo $timeremaining.' hours remaining';
                                  $busflag = true;
                              } else {
                                  echo 'Bus is about to set of for '.$row['destination'];
+                                 $busflag = false;
                              }
                             ?>
                         </p>
